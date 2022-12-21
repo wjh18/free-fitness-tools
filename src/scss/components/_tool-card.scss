@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains an example component
+// -----------------------------------------------------------------------------
+
+.tool-cards {
+  // width: 100%;
+}
+
+.tool-card {
+  display: block;
+  max-width: 500px;
+  margin: 15px auto;
+  padding: 20px;
+  text-decoration: none;
+  background-color: #E8F1F2;
+  border: 3px dashed #001A23;
+  box-shadow: 0 0 30px -10px #001A23;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #B3EFB2;
+  }
+}

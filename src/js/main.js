@@ -17,7 +17,7 @@ function maxLiftSubmit(event) {
 
 function calculateMaxLift(formula, weight, reps) {
   let calcResult = 0;
-  if (formula == "average") {
+  if (formula === "average") {
     let i = 0;
     for (const property in formulas) {
       const formulaResult = formulas[property](weight, reps);

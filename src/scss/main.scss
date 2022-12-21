@@ -11,11 +11,11 @@
   'vendors/normalize';
 
 // // 3. Base stuff
-// @import
-//   'base/base',
-//   'base/fonts',
-//   'base/typography',
-//   'base/helpers';
+@import
+  'base/base';
+  // 'base/fonts',
+  // 'base/typography',
+  // 'base/helpers';
 
 // // 4. Layout-related sections
 // @import
@@ -24,7 +24,7 @@
 
 // 5. Components
 @import
-  'components/example';
+  'components/tool-card';
 
 // // 6. Page-specific styles
 // @import

@@ -49,9 +49,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Vanilla JS Starter',
+      title: 'Free Fitness Tools',
       filename: 'index.html',
       template: 'src/index.html',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Max Lift Calculator',
+      filename: 'max-lifts.html',
+      template: 'src/html/max-lifts.html',
     }),
     new BundleAnalyzerPlugin(),
   ],

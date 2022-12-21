@@ -1,7 +1,7 @@
 {
-  "name": "vanilla-js-starter",
+  "name": "free-fitness-tools",
   "version": "1.0.0",
-  "description": "Vanilla JS starter with Webpack, Babel and Sass support.",
+  "description": "Free and open source tools for fitness enthusiasts.",
   "private": true,
   "scripts": {
     "start": "webpack serve",

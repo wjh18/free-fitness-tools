@@ -1,3 +1,3 @@
-# Vanilla JS Starter
+# Free Fitness Tools
 
-Vanilla JS starter with Webpack, Babel and Sass support.
+Free and open source tools for fitness enthusiasts.

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="">
+
+    <meta name="robots" content="index, follow">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="author" content="Will J. Holmes">
+    <meta name="description" content="A free tool to calculate your 1 rep max via various popular formulae.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+  </head>
+  <body>
+    <header>
+
+    </header>    
+    <main>
+      <h1>Max Lift Calculator</h1>
+      <p>Calculate your 1 rep max via various popular formulae.</p>      
+      <form id="maxLiftForm">
+        <fieldset>
+          <legend>1RM Calculator</legend>
+          <label for="maxLiftFormula">Formula</label>
+          <select id="maxLiftFormula">
+            <option selected value="average">Average All</option>
+            <option value="epley">Epley</option>
+            <option value="brzycki">Brzycki</option>
+            <option value="lander">Lander</option>
+            <option value="lombardi">Lombardi</option>
+            <option value="mayhew">Mayhew</option>
+            <option value="oconner">O'Conner</option>
+            <option value="walthen">Walthen</option>
+          </select>
+          <label for="maxLiftWeight">Weight</label>
+          <input type="number" min="0" max="500" id="maxLiftWeight" name="weight" value="225">
+          <select id="maxLiftUnit">
+            <option selected value="Imperial">lbs</option>
+            <option value="Metric">kg</option>
+          </select>
+          <label for="maxLiftReps">Reps</label>
+          <input type="number" min="2" max="15" id="maxLiftReps" value="12">
+          <button type="submit">Calculate 1RM</button>
+        </fieldset>
+      </form>
+      <div id="maxLiftResult">
+
+      </div>
+    </main>
+    <footer>
+
+    </footer>
+    <!-- Scripts -->
+  </body>
+</html>

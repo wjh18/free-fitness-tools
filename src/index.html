@@ -9,8 +9,8 @@
 
     <meta name="robots" content="index, follow">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <meta name="author" content="John Doe">
-    <meta name="description" content="Vanilla JS Starter">
+    <meta name="author" content="Will J. Holmes">
+    <meta name="description" content="Free and open source tools for fitness enthusiasts.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -20,35 +20,15 @@
   <body>
     <header>
 
-    </header>    
+    </header>
     <main>
-      <form id="maxLiftForm">
-        <fieldset>
-          <legend>Calculate Your One Rep Max Lifts</legend>
-          <label for="maxLiftFormula">Formula</label>
-          <select id="maxLiftFormula">
-            <option selected value="average">Average All</option>
-            <option value="epley">Epley</option>
-            <option value="brzycki">Brzycki</option>
-            <option value="lander">Lander</option>
-            <option value="lombardi">Lombardi</option>
-            <option value="mayhew">Mayhew</option>
-            <option value="oconner">O'Conner</option>
-            <option value="walthen">Walthen</option>
-          </select>
-          <label for="maxLiftWeight">Weight</label>
-          <input type="number" min="0" max="500" id="maxLiftWeight" name="weight" value="225">
-          <select id="maxLiftUnit">
-            <option selected value="Imperial">lbs</option>
-            <option value="Metric">kg</option>
-          </select>
-          <label for="maxLiftReps">Reps</label>
-          <input type="number" min="2" max="15" id="maxLiftReps" value="12">
-          <button type="submit">Calculate 1RM</button>
-        </fieldset>
-      </form>
-      <div id="maxLiftResult">
-
+      <div>
+        <h1>Free Fitness Tools</h1>
+        <p>Free and open source tools for fitness enthusiasts.</p>
+      </div>
+      <div>
+        <h2><a href="max-lifts.html">Max Lift Calculator</a></h2>
+        <p>Calculate your 1 rep max via various popular formulae.</p>
       </div>
     </main>
     <footer>

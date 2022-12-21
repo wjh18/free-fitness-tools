@@ -22,7 +22,34 @@
 
     </header>    
     <main>
+      <form id="maxLiftForm">
+        <fieldset>
+          <legend>Calculate Your One Rep Max Lifts</legend>
+          <label for="maxLiftFormula">Formula</label>
+          <select id="maxLiftFormula">
+            <option selected value="average">Average All</option>
+            <option value="epley">Epley</option>
+            <option value="brzycki">Brzycki</option>
+            <option value="lander">Lander</option>
+            <option value="lombardi">Lombardi</option>
+            <option value="mayhew">Mayhew</option>
+            <option value="oconner">O'Conner</option>
+            <option value="walthen">Walthen</option>
+          </select>
+          <label for="maxLiftWeight">Weight</label>
+          <input type="number" min="0" max="500" id="maxLiftWeight" name="weight" value="225">
+          <select id="maxLiftUnit">
+            <option selected value="Imperial">lbs</option>
+            <option value="Metric">kg</option>
+          </select>
+          <label for="maxLiftReps">Reps</label>
+          <input type="number" min="2" max="15" id="maxLiftReps" value="12">
+          <button type="submit">Calculate 1RM</button>
+        </fieldset>
+      </form>
+      <div id="maxLiftResult">
 
+      </div>
     </main>
     <footer>
 

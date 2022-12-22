@@ -16,16 +16,29 @@ function maxLiftSubmit(event) {
   event.preventDefault(); // No query parameters on submit
 }
 
-function showPercentages(max) {
+function iterateOverPercentages(max) {
   const percentagesDiv = document.getElementById("percentagesDiv");
   const tbody = percentagesDiv.getElementsByTagName("tbody")[0];
   const percentages = [1.0, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5]
   let i = 0;
   for (const trow of tbody.children) {
     const repsData = trow.getElementsByTagName("td")[2];
-    repsData.textContent = roundToFirstDecimalPlace(max * percentages[i]);
+    if (!max) {
+      repsData.textContent = 0;
+    } else {
+      repsData.textContent = roundToFirstDecimalPlace(max * percentages[i]);
+    }
     i++;
   }
+}
+
+function showPercentages(max) {
+  iterateOverPercentages(max);
+}
+
+function maxLiftReset(event) {
+  maxLiftResult.textContent = "";
+  iterateOverPercentages();
 }
 
 function calculateMaxLift(formula, weight, reps) {
@@ -85,5 +98,7 @@ const formulas = {
 };
 
 const maxLiftForm = document.getElementById("maxLiftForm");
+const maxLiftFormReset = document.getElementById("maxLiftFormReset");
 const maxLiftResult = document.getElementById("maxLiftResult");
 maxLiftForm.addEventListener('submit', maxLiftSubmit);
+maxLiftFormReset.addEventListener('click', maxLiftReset);

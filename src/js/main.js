@@ -11,7 +11,10 @@ function maxLiftSubmit(event) {
   const unitSelect = document.getElementById("maxLiftUnit");
   const unit = unitSelect.options[unitSelect.selectedIndex].text;
 
-  maxLiftResult.textContent = oneRepMax + ` ${unit}`;
+  const resultElem = document.createElement("p");
+  resultElem.setAttribute("id", "maxLiftResultElem");
+  resultElem.textContent = oneRepMax + ` ${unit}`;
+  maxLiftResult.appendChild(resultElem);
   showPercentages(oneRepMax);
   event.preventDefault(); // No query parameters on submit
 }
@@ -37,7 +40,8 @@ function showPercentages(max) {
 }
 
 function maxLiftReset(event) {
-  maxLiftResult.textContent = "";
+  const maxLiftResultElem = document.getElementById("maxLiftResultElem");
+  maxLiftResultElem.remove();
   iterateOverPercentages();
 }
 

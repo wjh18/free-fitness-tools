@@ -12,7 +12,20 @@ function maxLiftSubmit(event) {
   const unit = unitSelect.options[unitSelect.selectedIndex].text;
 
   maxLiftResult.textContent = oneRepMax + ` ${unit}`;
+  showPercentages(oneRepMax);
   event.preventDefault(); // No query parameters on submit
+}
+
+function showPercentages(max) {
+  const percentagesDiv = document.getElementById("percentagesDiv");
+  const tbody = percentagesDiv.getElementsByTagName("tbody")[0];
+  const percentages = [1.0, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5]
+  let i = 0;
+  for (const trow of tbody.children) {
+    const repsData = trow.getElementsByTagName("td")[2];
+    repsData.textContent = roundToFirstDecimalPlace(max * percentages[i]);
+    i++;
+  }
 }
 
 function calculateMaxLift(formula, weight, reps) {
@@ -26,7 +39,11 @@ function calculateMaxLift(formula, weight, reps) {
   } else {
     calcResult = formulas[formula](weight, reps);
   }
-  return Math.round(calcResult);
+  return roundToFirstDecimalPlace(calcResult);
+}
+
+function roundToFirstDecimalPlace(num) {
+  return Math.round(num * 10) / 10;
 }
 
 function epleyFormula(w, r) {

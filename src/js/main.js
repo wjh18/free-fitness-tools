@@ -18,13 +18,11 @@ function maxLiftSubmit(event) {
 function calculateMaxLift(formula, weight, reps) {
   let calcResult = 0;
   if (formula === "average") {
-    let i = 0;
-    for (const property in formulas) {
-      const formulaResult = formulas[property](weight, reps);
-      calcResult += formulaResult;
-      i++;
+    for (const f of Object.values(formulas)) {
+      const formulaResult = f(weight, reps);
+      calcResult += formulaResult;      
     }
-    calcResult /= i;
+    calcResult /= Object.keys(formulas).length;
   } else {
     calcResult = formulas[formula](weight, reps);
   }

@@ -6,3 +6,14 @@ body {
   background-color: #F1E9DB;
   font-family: $font-stack;
 }
+
+table {
+  overflow-x: auto;
+  border: 1px solid black;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 5px 10px;
+  text-align: center;
+}

@@ -3,6 +3,7 @@ export const maxLift = {
   formReset: document.getElementById("maxLiftFormReset"),
   result: document.getElementById("maxLiftResult"),
   resultElem: null,
+  resultValue: null,
   formulas: {
     epley: epleyFormula,
     brzycki: brzyckiFormula,
@@ -37,37 +38,62 @@ function maxLiftSubmit(event) {
   }
 
   maxLift.resultElem.textContent = oneRepMax + ` ${unit}`;
+  maxLift.resultValue = oneRepMax;
   
-  showPercentages(oneRepMax);
+  showPercentages(oneRepMax, formula);
   event.preventDefault(); // No query parameters on submit
 }
 
-function iterateOverPercentages(max) {
+function iterateOverPercentages(max, formula) {
   const percentagesDiv = document.getElementById("percentagesDiv");
   const tbody = percentagesDiv.getElementsByTagName("tbody")[0];
   const percentages = [1.0, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5]
   let i = 0;
   for (const trow of tbody.children) {
-    const repsData = trow.getElementsByTagName("td")[2];
+    const repsData = trow.getElementsByTagName("td")[1];
+    const weightData = trow.getElementsByTagName("td")[2];
     if (!max) {
       repsData.textContent = 0;
+      weightData.textContent = 0;
+    } else if (i === 0) {
+      repsData.textContent = 1;
+      weightData.textContent = max;
     } else {
-      repsData.textContent = roundToFirstDecimalPlace(max * percentages[i]);
+      const weight = roundToFirstDecimalPlace(max * percentages[i]);
+      weightData.textContent = weight;
+      // const inverseReps = epleyFormula(weight, null, maxLift.resultValue);
+      // repsData.textContent = roundToFirstDecimalPlace(inverseReps);
+      repsData.textContent = calculateInverseReps(formula, weight, maxLift.resultValue)
     }
     i++;
   }
+}
+
+function calculateInverseReps(formula, weight, max) {
+  let calcResult = 0;
+  if (formula === "average") {
+    for (const f of Object.values(maxLift.formulas)) {
+      const inverseReps = f(weight, null, max);
+      calcResult += inverseReps;      
+    }
+    calcResult /= Object.keys(maxLift.formulas).length;
+  } else {
+    calcResult = maxLift.formulas[formula](weight, null, max);
+  }
+  return roundToFirstDecimalPlace(calcResult);
 }
 
 function maxLiftReset(event) {
   if (maxLift.resultElem !== null) {
     maxLift.resultElem.remove();
     maxLift.resultElem = null;
+    maxLift.resultValue = null;
   }
   iterateOverPercentages();
 }
 
-function showPercentages(max) {
-  iterateOverPercentages(max);
+function showPercentages(max, formula) {
+  iterateOverPercentages(max, formula);
 }
 
 function calculateMaxLift(formula, weight, reps) {
@@ -88,12 +114,24 @@ function roundToFirstDecimalPlace(num) {
   return Math.round(num * 10) / 10;
 }
 
-function epleyFormula(w, r) {
-  return w * (1 + (0.0333 * r));
+function epleyFormula(w, r, m) {
+  if (!m) {
+    // Standard Epley formula; 1RM based on weight and reps
+    return w * (1 + (0.0333*r));
+  } else {
+    // Inverse function; estimate reps that can be performed at % of 1RM
+    return (30*m - 30*w) / w;
+  }
 }
 
-function brzyckiFormula(w, r) {
-  return w / (1.0278 - (0.0278 * r));
+function brzyckiFormula(w, r, m) {
+  if (!m) {
+    // Standard formula (1RM)
+    return w / (1.0278 - (0.0278 * r));
+  } else {
+    // Inverse function (reps at % of 1RM)
+    return ((w / m) - 1.0278) / -0.0278
+  }
 }
 
 function landerFormula(w, r) {

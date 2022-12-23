@@ -2,9 +2,9 @@
 // This file contains an example component
 // -----------------------------------------------------------------------------
 
-.tool-cards {
-  // width: 100%;
-}
+// .tool-cards {
+//   // width: 100%;
+// }
 
 .tool-card {
   display: block;
@@ -16,6 +16,14 @@
   border: 3px dashed #001A23;
   box-shadow: 0 0 30px -10px #001A23;
   border-radius: 10px;
+
+  h2 {
+    font-weight: 500;
+  }
+
+  p {
+    font-weight: 300;
+  }
 
   &:hover {
     background-color: #B3EFB2;

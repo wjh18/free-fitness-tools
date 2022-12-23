@@ -130,26 +130,56 @@ function brzyckiFormula(w, r, m) {
     return w / (1.0278 - (0.0278 * r));
   } else {
     // Inverse function (reps at % of 1RM)
-    return ((w / m) - 1.0278) / -0.0278
+    return ((w / m) - 1.0278) / -0.0278;
   }
 }
 
-function landerFormula(w, r) {
-  return (100 * w) / (101.3 - (2.67123 * r));
+function landerFormula(w, r, m) {
+  if (!m) {
+    // Standard formula (1RM)
+    return (100 * w) / (101.3 - (2.67123 * r));
+  } else {
+    // Inverse function (reps at % of 1RM)
+    return (((100 * w) / m) - 101.3) / -2.67123;
+  }
 }
 
-function lombardiFormula(w, r) {
-  return w * Math.pow(r, 0.1);
+function lombardiFormula(w, r, m) {
+  if (!m) {
+    // Standard formula (1RM)
+    return w * Math.pow(r, 0.1);
+  } else {
+    // Inverse function (reps at % of 1RM)
+    return Math.pow((m/w), 10);
+  }
 }
 
-function mayhewFormula(w, r) {
-  return (100 * w) / (52.2 + 41.9 * Math.pow(Math.E, -0.055*r));
+function mayhewFormula(w, r, m) {
+  if (!m) {
+    // Standard formula (1RM)
+    return (100 * w) / (52.2 + 41.9 * Math.pow(Math.E, -0.055*r));
+  } else {
+    // Inverse function (reps at % of 1RM)
+    return Math.log((((100*w)/m) - 52.2) / 41.9) / -0.055;
+  }
 }
 
-function oconnerFormula(w, r) {
-  return w * (1 + (r / 40));
+function oconnerFormula(w, r, m) {  
+  if (!m) {
+    // Standard formula (1RM)
+    return w * (1 + (r / 40));
+  } else {
+    // Inverse function (reps at % of 1RM)
+    return ((40*m)/w) - 40
+  }
 }
 
-function walthenFormula(w, r) {
-  return (100 * w) / (48.8 + 53.8 * Math.pow(Math.E, -0.075*r));
+function walthenFormula(w, r, m) {
+  if (!m) {
+    // Standard formula (1RM)
+    return (100 * w) / (48.8 + 53.8 * Math.pow(Math.E, -0.075*r));
+  } else {
+    // Inverse function (reps at % of 1RM)
+    return Math.log((((100*w)/m) - 48.8) / 53.8) / -0.075;
+  }
 }

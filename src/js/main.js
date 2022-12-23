@@ -1,5 +1,28 @@
 import "../scss/main.scss";
 
+let maxLift = {
+  form: document.getElementById("maxLiftForm"),
+  formReset: document.getElementById("maxLiftFormReset"),
+  result: document.getElementById("maxLiftResult"),
+  resultElem: null,
+  formulas: {
+    epley: epleyFormula,
+    brzycki: brzyckiFormula,
+    lander: landerFormula,
+    lombardi: lombardiFormula,
+    mayhew: mayhewFormula,
+    oconner: oconnerFormula,
+    walthen: walthenFormula,
+  },
+  run: function() {
+    this.form.addEventListener('submit', maxLiftSubmit);
+    this.formReset.addEventListener('click', maxLiftReset);
+  }
+};
+
+maxLift.run();
+
+
 function maxLiftSubmit(event) {  
   const formulaSelect = document.getElementById("maxLiftFormula");
   const formula = formulaSelect.options[formulaSelect.selectedIndex].value;
@@ -11,10 +34,15 @@ function maxLiftSubmit(event) {
   const unitSelect = document.getElementById("maxLiftUnit");
   const unit = unitSelect.options[unitSelect.selectedIndex].text;
 
-  const resultElem = document.createElement("p");
-  resultElem.setAttribute("id", "maxLiftResultElem");
-  resultElem.textContent = oneRepMax + ` ${unit}`;
-  maxLiftResult.appendChild(resultElem);
+  if (maxLift.resultElem === null) {
+    const resultElem = document.createElement("p");
+    resultElem.setAttribute("id", "maxLiftResultElem");
+    maxLift.result.appendChild(resultElem);
+    maxLift.resultElem = document.getElementById("maxLiftResultElem"); // Store in object
+  }
+
+  maxLift.resultElem.textContent = oneRepMax + ` ${unit}`;
+  
   showPercentages(oneRepMax);
   event.preventDefault(); // No query parameters on submit
 }
@@ -40,21 +68,23 @@ function showPercentages(max) {
 }
 
 function maxLiftReset(event) {
-  const maxLiftResultElem = document.getElementById("maxLiftResultElem");
-  maxLiftResultElem.remove();
+  if (maxLift.resultElem !== null) {
+    maxLift.resultElem.remove();
+    maxLift.resultElem = null;
+  }
   iterateOverPercentages();
 }
 
 function calculateMaxLift(formula, weight, reps) {
   let calcResult = 0;
   if (formula === "average") {
-    for (const f of Object.values(formulas)) {
+    for (const f of Object.values(maxLift.formulas)) {
       const formulaResult = f(weight, reps);
       calcResult += formulaResult;      
     }
-    calcResult /= Object.keys(formulas).length;
+    calcResult /= Object.keys(maxLift.formulas).length;
   } else {
-    calcResult = formulas[formula](weight, reps);
+    calcResult = maxLift.formulas[formula](weight, reps);
   }
   return roundToFirstDecimalPlace(calcResult);
 }
@@ -90,19 +120,3 @@ function oconnerFormula(w, r) {
 function walthenFormula(w, r) {
   return (100 * w) / (48.8 + 53.8 * Math.pow(Math.E, -0.075*r));
 }
-
-const formulas = {
-  epley: epleyFormula,
-  brzycki: brzyckiFormula,
-  lander: landerFormula,
-  lombardi: lombardiFormula,
-  mayhew: mayhewFormula,
-  oconner: oconnerFormula,
-  walthen: walthenFormula,
-};
-
-const maxLiftForm = document.getElementById("maxLiftForm");
-const maxLiftFormReset = document.getElementById("maxLiftFormReset");
-const maxLiftResult = document.getElementById("maxLiftResult");
-maxLiftForm.addEventListener('submit', maxLiftSubmit);
-maxLiftFormReset.addEventListener('click', maxLiftReset);

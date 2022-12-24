@@ -50,8 +50,8 @@ function iterateOverPercentages(max, formula) {
   const percentages = [1.0, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5]
   let i = 0;
   for (const trow of tbody.children) {
-    const repsData = trow.getElementsByTagName("td")[1];
-    const weightData = trow.getElementsByTagName("td")[2];
+    const repsData = trow.getElementsByTagName("td")[2];
+    const weightData = trow.getElementsByTagName("td")[1];
     if (!max) {
       repsData.textContent = 0;
       weightData.textContent = 0;

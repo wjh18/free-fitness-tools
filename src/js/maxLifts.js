@@ -37,7 +37,7 @@ function maxLiftSubmit(event) {
     maxLift.resultElem = document.getElementById("maxLiftResultElem"); // Store in object
   }
 
-  maxLift.resultElem.textContent = oneRepMax + ` ${unit}`;
+  maxLift.resultElem.textContent = `1RM: ${oneRepMax} ${unit}`;
   maxLift.resultValue = oneRepMax;
   
   showPercentages(oneRepMax, formula);
@@ -61,20 +61,18 @@ function iterateOverPercentages(max, formula) {
     } else {
       const weight = roundToFirstDecimalPlace(max * percentages[i]);
       weightData.textContent = weight;
-      // const inverseReps = epleyFormula(weight, null, maxLift.resultValue);
-      // repsData.textContent = roundToFirstDecimalPlace(inverseReps);
-      repsData.textContent = calculateInverseReps(formula, weight, maxLift.resultValue)
+      repsData.textContent = calculatePercentageReps(formula, weight, maxLift.resultValue)
     }
     i++;
   }
 }
 
-function calculateInverseReps(formula, weight, max) {
+function calculatePercentageReps(formula, weight, max) {
   let calcResult = 0;
   if (formula === "average") {
     for (const f of Object.values(maxLift.formulas)) {
-      const inverseReps = f(weight, null, max);
-      calcResult += inverseReps;      
+      const percentageReps = f(weight, null, max);
+      calcResult += percentageReps;      
     }
     calcResult /= Object.keys(maxLift.formulas).length;
   } else {
@@ -116,70 +114,70 @@ function roundToFirstDecimalPlace(num) {
 
 function epleyFormula(w, r, m) {
   if (!m) {
-    // Standard Epley formula; 1RM based on weight and reps
+    // Standard Epley formula to solve for 1RM based on weight and reps
     return w * (1 + (0.0333*r));
   } else {
-    // Inverse function; estimate reps that can be performed at % of 1RM
+    // Rearranged Epley formula to solve for how many reps can be performed at % of 1RM
     return (30*m - 30*w) / w;
   }
 }
 
 function brzyckiFormula(w, r, m) {
   if (!m) {
-    // Standard formula (1RM)
+    // Standard formula (solve for 1RM)
     return w / (1.0278 - (0.0278 * r));
   } else {
-    // Inverse function (reps at % of 1RM)
+    // Rearranged formula (solve for reps at % of 1RM)
     return ((w / m) - 1.0278) / -0.0278;
   }
 }
 
 function landerFormula(w, r, m) {
   if (!m) {
-    // Standard formula (1RM)
+    // Standard formula (solve for 1RM)
     return (100 * w) / (101.3 - (2.67123 * r));
   } else {
-    // Inverse function (reps at % of 1RM)
+    // Rearranged formula (solve for reps at % of 1RM)
     return (((100 * w) / m) - 101.3) / -2.67123;
   }
 }
 
 function lombardiFormula(w, r, m) {
   if (!m) {
-    // Standard formula (1RM)
+    // Standard formula (solve for 1RM)
     return w * Math.pow(r, 0.1);
   } else {
-    // Inverse function (reps at % of 1RM)
+    // Rearranged formula (solve for reps at % of 1RM)
     return Math.pow((m/w), 10);
   }
 }
 
 function mayhewFormula(w, r, m) {
   if (!m) {
-    // Standard formula (1RM)
+    // Standard formula (solve for 1RM)
     return (100 * w) / (52.2 + 41.9 * Math.pow(Math.E, -0.055*r));
   } else {
-    // Inverse function (reps at % of 1RM)
+    // Rearranged formula (solve for reps at % of 1RM)
     return Math.log((((100*w)/m) - 52.2) / 41.9) / -0.055;
   }
 }
 
 function oconnerFormula(w, r, m) {  
   if (!m) {
-    // Standard formula (1RM)
+    // Standard formula (solve for 1RM)
     return w * (1 + (r / 40));
   } else {
-    // Inverse function (reps at % of 1RM)
+    // Rearranged formula (solve for reps at % of 1RM)
     return ((40*m)/w) - 40
   }
 }
 
 function walthenFormula(w, r, m) {
   if (!m) {
-    // Standard formula (1RM)
+    // Standard formula (solve for 1RM)
     return (100 * w) / (48.8 + 53.8 * Math.pow(Math.E, -0.075*r));
   } else {
-    // Inverse function (reps at % of 1RM)
+    // Rearranged formula (solve for reps at % of 1RM)
     return Math.log((((100*w)/m) - 48.8) / 53.8) / -0.075;
   }
 }

@@ -3,3 +3,12 @@
 // -----------------------------------------------------------------------------
 
 $font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$max-width: 1180px;
+$breakpoints: (
+  'x-small': 320px,
+  'small': 576px,
+  'medium': 768px,
+  'm-large': 900px,
+  'large': 1024px,
+  'x-large': 1200px,
+);

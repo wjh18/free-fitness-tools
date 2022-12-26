@@ -2,9 +2,35 @@
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #F1E9DB;
   font-family: $font-stack;
+  /* Flex properties on body/main/footer are for floating footer
+  to bottom of page if main content doesn't fill viewport vertically */
+  display: flex;
+  flex-direction: column;
+}
+
+main {   
+  flex: 1 0 auto; 
+}
+
+footer {
+  flex-shrink: 0;    
 }
 
 table {

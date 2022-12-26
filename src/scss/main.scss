@@ -24,8 +24,9 @@
 
 // 5. Components
 @import
-  'components/tool-card';
+  'components/tool-cards';
 
-// // 6. Page-specific styles
-// @import
-//   'pages/home';
+// 6. Page-specific styles
+@import
+  'pages/home',
+  'pages/max-lifts';

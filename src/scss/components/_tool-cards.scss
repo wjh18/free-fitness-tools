@@ -2,14 +2,16 @@
 // This file contains an example component
 // -----------------------------------------------------------------------------
 
-// .tool-cards {
-//   // width: 100%;
-// }
+.tool-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 50px 0;
+}
 
 .tool-card {
   display: block;
-  max-width: 500px;
-  margin: 15px auto;
   padding: 20px;
   text-decoration: none;
   background-color: #E8F1F2;

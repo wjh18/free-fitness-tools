@@ -55,8 +55,13 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Max Lift Calculator',
-      filename: 'max-lifts.html',
+      filename: 'max-lifts/index.html',
       template: 'src/html/max-lifts.html',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'TDEE Calculator',
+      filename: 'tdee/index.html',
+      template: 'src/html/tdee.html',
     }),
     new BundleAnalyzerPlugin(),
   ],

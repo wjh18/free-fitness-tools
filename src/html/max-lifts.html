@@ -18,125 +18,129 @@
     <link rel="manifest" href="assets/favicon/site.webmanifest">
   </head>
   <body>
-    <header>
-
-    </header>    
+    <header class="container">
+      <a href="/">Home</a>
+    </header>
     <main>
       <div class="container">
-        <h1>Max Lift Calculator</h1>
-        <p>Calculate your 1 rep max via various popular formulae.</p>
-        <form id="maxLiftForm">
-          <fieldset>
-            <legend>1RM Calculator</legend>
-            <label for="maxLiftFormula">Formula</label>
-            <select id="maxLiftFormula">
-              <option selected value="average">Average All</option>
-              <option value="epley">Epley</option>
-              <option value="brzycki">Brzycki</option>
-              <option value="lander">Lander</option>
-              <option value="lombardi">Lombardi</option>
-              <option value="mayhew">Mayhew</option>
-              <option value="oconner">O'Conner</option>
-              <option value="walthen">Walthen</option>
-            </select>
-            <label for="maxLiftWeight">Weight</label>
-            <input type="number" min="1" max="500" id="maxLiftWeight" name="weight" value="225">
-            <select id="maxLiftUnit">
-              <option selected value="Imperial">lbs</option>
-              <option value="Metric">kg</option>
-            </select>
-            <label for="maxLiftReps">Reps</label>
-            <input type="number" min="2" max="15" id="maxLiftReps" value="12">
-            <button type="submit">Calculate 1RM</button>
-            <button type="reset" id="maxLiftFormReset">Reset</button>
-          </fieldset>
-        </form>
-        <div id="maxLiftResult">
+        <div class="page-heading">
+          <h1>Max Lift Calculator</h1>
+          <p>Calculate your 1 rep max via various popular formulae.</p>
         </div>
-        <div id="percentagesDiv">
-          <table>
-            <caption>
-              Expected reps of weight at % of 1RM
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">% of 1RM</th>
-                <th scope="col">Weight</th>
-                <th scope="col">Reps of 1RM<sup>*</sup></th>                
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>100%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>95%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>90%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>85%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>80%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>75%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>70%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>65%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>60%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>55%</td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>50%</td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            <em>
-              <sup>*</sup>Note: Reps of 1RM is calculated by rearranging each formula to solve for reps with the original 1RM result and the weight at X% of 1RM as inputs.
-              Reps of 1RM may be inaccurate for certain formulae at a lower % of 1RM (most notably: Lombardi and Mayhew).
-              Please keep this in mind when selecting "Average All" as the formula option.
-              Mayhew's reps at 95% of max may also be negative. These are what I discovered as flaws in the formulae due to exponentiality, not a calculation error.
-              The first three formulae - Epley, Brzycki and Lander - are better at predicting reps at a % of 1RM.
-            </em>
-          </p>
+        <div class="max-lifts">
+          <form id="maxLiftForm">
+            <fieldset>
+              <legend>1RM Calculator</legend>
+              <label for="maxLiftFormula">Formula</label>
+              <select id="maxLiftFormula">
+                <option selected value="average">Average All</option>
+                <option value="epley">Epley</option>
+                <option value="brzycki">Brzycki</option>
+                <option value="lander">Lander</option>
+                <option value="lombardi">Lombardi</option>
+                <option value="mayhew">Mayhew</option>
+                <option value="oconner">O'Conner</option>
+                <option value="walthen">Walthen</option>
+              </select>
+              <label for="maxLiftWeight">Weight</label>
+              <input type="number" min="1" max="500" id="maxLiftWeight" name="weight" value="225">
+              <select id="maxLiftUnit">
+                <option selected value="Imperial">lbs</option>
+                <option value="Metric">kg</option>
+              </select>
+              <label for="maxLiftReps">Reps</label>
+              <input type="number" min="2" max="15" id="maxLiftReps" value="12">
+              <button type="submit">Calculate 1RM</button>
+              <button type="reset" id="maxLiftFormReset">Reset</button>
+            </fieldset>
+          </form>
+          <div id="maxLiftResult">
+          </div>
+          <div id="percentagesDiv">
+            <table>
+              <caption>
+                Expected reps of weight at % of 1RM
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">% of 1RM</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Reps of 1RM<sup>*</sup></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>100%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>95%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>90%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>85%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>80%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>75%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>70%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>65%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>60%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>55%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>50%</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              <em>
+                <sup>*</sup>Note: Reps of 1RM is calculated by rearranging each formula to solve for reps with the original 1RM result and the weight at X% of 1RM as inputs.
+                Reps of 1RM may be inaccurate for certain formulae at a lower % of 1RM (most notably: Lombardi and Mayhew).
+                Please keep this in mind when selecting "Average All" as the formula option.
+                Mayhew's reps at 95% of max may also be negative. These are what I discovered as flaws in the formulae due to exponentiality, not a calculation error.
+                The first three formulae - Epley, Brzycki and Lander - are better at predicting reps at a % of 1RM.
+              </em>
+            </p>
+          </div>
         </div>
       </div>
     </main>
-    <footer>
-
+    <footer class="container">
+      <a href="https://www.https://github.com/wjh18/free-fitness-tools" target="_blank">Source Code</a> &middot; Made by <a href="https://www.wjholmes.com" target="_blank">Will J. Holmes</a>
     </footer>
     <!-- Scripts -->
   </body>

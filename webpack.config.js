@@ -23,7 +23,7 @@ module.exports = {
     open: true,
     hot: true,
     compress: true,
-    historyApiFallback: true,
+    historyApiFallback: false,
   },
   module: {
     rules: [
@@ -52,6 +52,11 @@ module.exports = {
       title: 'Free Fitness Tools',
       filename: 'index.html',
       template: 'src/index.html',
+    }),
+    new HtmlWebpackPlugin({
+      title: '404 Not Found',
+      filename: '404.html',
+      template: 'src/404.html',
     }),
     new HtmlWebpackPlugin({
       title: 'Max Lift Calculator',

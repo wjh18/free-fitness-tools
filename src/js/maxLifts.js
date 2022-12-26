@@ -14,8 +14,10 @@ export const maxLift = {
     walthen: walthenFormula,
   },
   run: function() {
-    this.form.addEventListener('submit', maxLiftSubmit);
-    this.formReset.addEventListener('click', maxLiftReset);
+    if (this.form) {
+      this.form.addEventListener('submit', maxLiftSubmit);
+      this.formReset.addEventListener('click', maxLiftReset);
+    }
   }
 };
 

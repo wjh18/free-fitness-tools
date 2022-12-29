@@ -71,6 +71,8 @@ module.exports = {
       filename: 'tdee/index.html',
       template: 'src/html/tdee.html',
     }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+    }),
   ],
 }

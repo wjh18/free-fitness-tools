@@ -40,6 +40,7 @@ function maxLiftSubmit(event) {
   }
 
   maxLift.resultElem.textContent = `1RM: ${oneRepMax} ${unit}`;
+  maxLift.resultElem.style.color = "rgb(21, 122, 56)";
   maxLift.resultValue = oneRepMax;
   
   showPercentages(oneRepMax, formula);

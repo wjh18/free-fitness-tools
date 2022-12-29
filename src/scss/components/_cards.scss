@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// This file contains an example component
+// -----------------------------------------------------------------------------
+
+.tool-cards {
+  @include flex-row-wrap-start;
+  gap: 20px;
+  padding: 30px 0;
+}
+
+.tool-card {
+  max-width: 350px;
+  padding: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: $color-contrast-lower;
+  box-shadow: 0 3px 6px $color-contrast-low, 0 3px 6px $color-secondary;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  h2 {
+    font-weight: 500;
+  }
+
+  p {
+    font-weight: 300;
+    line-height: 1.5rem;
+    color: $color-contrast-high;
+  }
+
+  @include on-event {
+    text-decoration: none;
+    box-shadow: 0 3px 10px $color-secondary, 0 3px 10px $color-contrast-low;
+  }
+}
+
+.coming-soon {
+  color: $color-contrast-high;
+  font-weight: 500;
+}

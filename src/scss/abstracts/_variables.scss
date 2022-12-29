@@ -2,7 +2,22 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
+// Colors
+$color-primary: #D34E24;
+$color-secondary: #12263A;
+$color-bg: rgb(248, 248, 248);
+$color-contrast-lower: hsl(0, 0%, 95%);
+$color-contrast-low: hsl(240, 1%, 83%);
+$color-contrast-medium: hsl(240, 1%, 48%);
+$color-contrast-high: hsl(240, 4%, 20%);
+$color-contrast-higher: hsl(240, 6%, 10%);;
+$color-text: $color-contrast-high;
+
+// Fonts
+$font-rel-dir: '../assets/fonts/OpenSans';
 $font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+// Layout
 $max-width: 1180px;
 $breakpoints: (
   'x-small': 320px,

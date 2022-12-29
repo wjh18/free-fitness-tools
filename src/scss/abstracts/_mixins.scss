@@ -17,3 +17,18 @@
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
   }
 }
+
+@mixin on-event {
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-within {
+    @content;
+  }
+}
+
+@mixin flex-row-wrap-start {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}

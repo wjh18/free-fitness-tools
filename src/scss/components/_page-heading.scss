@@ -1,0 +1,17 @@
+.page-heading {
+  background-color: $color-secondary;
+  color: $color-contrast-lower;
+  padding: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  
+  h1, p {
+    margin: 0;
+  }
+
+  p {
+    margin-top: 15px;
+    line-height: 1.5rem;
+  }
+}

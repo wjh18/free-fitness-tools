@@ -1,0 +1,43 @@
+
+.btn-group {
+  display: flex;
+  column-gap: 15px;
+}
+
+%btn {
+  border: 1px solid $color-primary;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  display: inline-block;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  @include on-event() {
+    text-decoration: none;
+  }
+}
+
+.btn-primary {
+  @extend %btn;
+  background-color: $color-primary;
+  color: $color-contrast-lower;
+
+  &:hover {
+    background: transparent;
+    color: $color-primary;
+  }
+}
+
+.btn-secondary {
+  @extend %btn;
+  color: $color-primary;
+  background: transparent;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-contrast-lower;
+  }
+}

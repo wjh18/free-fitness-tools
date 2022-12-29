@@ -2,6 +2,9 @@
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
 
+/* 1). Flex properties on body/main/footer are for floating footer
+  to bottom of page if main content doesn't fill viewport vertically */
+
 html {
   box-sizing: border-box;
 }
@@ -17,29 +20,51 @@ html, body {
 }
 
 body {
-  background-color: #F1E9DB;
+  display: flex; // 1).
+  flex-direction: column; // 1).
+  background-color: $color-bg;
   font-family: $font-stack;
-  /* Flex properties on body/main/footer are for floating footer
-  to bottom of page if main content doesn't fill viewport vertically */
-  display: flex;
-  flex-direction: column;
 }
 
 main {   
-  flex: 1 0 auto; 
+  flex: 1 0 auto; // 1).
 }
 
 footer {
-  flex-shrink: 0;    
+  flex-shrink: 0; // 1).
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  @include on-event {
+    color: $color-text;
+    text-decoration: underline;
+  }
 }
 
 table {
   overflow-x: auto;
-  border: 1px solid black;
+  border: 1px solid $color-secondary;
+  background-color: white;
 }
 
 td, th {
-  border: 1px solid black;
+  border: 1px solid $color-secondary;
   padding: 5px 10px;
   text-align: center;
+}
+
+fieldset {
+  @include flex-row-wrap-start;
+  align-items: center;
+  gap: 15px 20px;
+  padding: 15px;
+  border: 2px dotted $color-secondary;
+  background-color: white;
+}
+
+legend {
+  font-weight: 500;
 }

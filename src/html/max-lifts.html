@@ -19,39 +19,49 @@
   </head>
   <body>
     <header class="container">
-      <a href="/">Home</a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+      </nav>
     </header>
     <main>
       <div class="container">
-        <div class="page-heading">
+        <section class="page-heading">
           <h1>Max Lift Calculator</h1>
           <p>Calculate your 1 rep max via various popular formulae.</p>
-        </div>
-        <div class="max-lifts">
+        </section>
+        <section class="max-lifts">
           <form id="maxLiftForm">
             <fieldset>
               <legend>1RM Calculator</legend>
-              <label for="maxLiftFormula">Formula</label>
-              <select id="maxLiftFormula">
-                <option selected value="average">Average All</option>
-                <option value="epley">Epley</option>
-                <option value="brzycki">Brzycki</option>
-                <option value="lander">Lander</option>
-                <option value="lombardi">Lombardi</option>
-                <option value="mayhew">Mayhew</option>
-                <option value="oconner">O'Conner</option>
-                <option value="walthen">Walthen</option>
-              </select>
-              <label for="maxLiftWeight">Weight</label>
-              <input type="number" min="1" max="500" id="maxLiftWeight" name="weight" value="225">
-              <select id="maxLiftUnit">
-                <option selected value="Imperial">lbs</option>
-                <option value="Metric">kg</option>
-              </select>
-              <label for="maxLiftReps">Reps</label>
-              <input type="number" min="2" max="15" id="maxLiftReps" value="12">
-              <button type="submit">Calculate 1RM</button>
-              <button type="reset" id="maxLiftFormReset">Reset</button>
+              <div class="form-group">
+                <label for="maxLiftFormula">Formula</label>
+                <select id="maxLiftFormula">
+                  <option selected value="average">Average All</option>
+                  <option value="epley">Epley</option>
+                  <option value="brzycki">Brzycki</option>
+                  <option value="lander">Lander</option>
+                  <option value="lombardi">Lombardi</option>
+                  <option value="mayhew">Mayhew</option>
+                  <option value="oconner">O'Conner</option>
+                  <option value="walthen">Walthen</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="maxLiftWeight">Weight</label>
+                <input type="number" min="1" max="500" id="maxLiftWeight" name="weight" value="225">
+                <select id="maxLiftUnit">
+                  <option selected value="Imperial">lbs</option>
+                  <option value="Metric">kg</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="maxLiftReps">Reps</label>
+                <input type="number" min="2" max="15" id="maxLiftReps" value="12">
+              </div>
+              <div class="btn-group">
+                <button type="submit" class="btn-primary">Calculate 1RM</button>
+                <button type="reset" id="maxLiftFormReset" class="btn-secondary">Reset</button>
+              </div>
             </fieldset>
           </form>
           <div id="maxLiftResult">
@@ -136,11 +146,13 @@
               </em>
             </p>
           </div>
-        </div>
+        </section>
       </div>
     </main>
     <footer class="container">
-      <a href="https://www.https://github.com/wjh18/free-fitness-tools" target="_blank">Source Code</a> &middot; Made by <a href="https://www.wjholmes.com" target="_blank">Will J. Holmes</a>
+      <section class="footer-links">
+        <a href="https://www.https://github.com/wjh18/free-fitness-tools" target="_blank">Source Code</a> &middot; Made by <a href="https://www.wjholmes.com" target="_blank">Will J. Holmes</a>
+      </section>
     </footer>
     <!-- Scripts -->
   </body>

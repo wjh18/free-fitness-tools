@@ -1,4 +1,4 @@
-import {maxLift} from "./maxLifts.js"
+import {maxLift} from "./pages/maxLifts.js"
 
 require('../scss/main.scss');
 require('../assets/favicon/site.webmanifest');

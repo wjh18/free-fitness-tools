@@ -1,0 +1,14 @@
+# Remove direct references to index.html.
+# Concrete Example: /foo/bar/index.html /foo/bar/ 301!
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*/index.html"
+  to = "/:splat/"
+  status = 301
+  force = true

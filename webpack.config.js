@@ -13,6 +13,7 @@ module.exports = {
     filename: '[name][contenthash].js',
     clean: true,
     assetModuleFilename: '[name][ext]',
+    publicPath: '/',
   },
   devtool: 'source-map',
   devServer: {

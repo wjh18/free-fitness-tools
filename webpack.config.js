@@ -2,6 +2,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const SitemapPlugin = require('sitemap-webpack-plugin').default;
+
+const baseUrl = 'https://www.freefitnesstools.com';
+const paths = [
+  '',
+  '/max-lifts/',
+  '/tdee/'
+];
 
 module.exports = {
   mode: 'development',
@@ -74,6 +82,16 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
+    }),
+    new SitemapPlugin({
+      base: baseUrl,
+      paths,
+      options: {
+        lastmod: true,
+        changefreq: 'monthly',
+        priority: 0.4,
+        skipgzip: true
+      }
     }),
   ],
 }

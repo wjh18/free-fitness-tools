@@ -56,7 +56,7 @@ function tdeeSubmit(event) {
   const bmr = calculateBmr(weight, weightUnit, height, heightUnit, age, gender);
   const maintenance = calculateMaintenance(bmr, activityLevel);
   const result = calculateCalories(bmr, maintenance, weightGoal);
-  tdee.resultElem.textContent = `${result} kcal; BMR: ${bmr}; Maintenance: ${maintenance}`;
+  tdee.resultElem.textContent = `Consume ${result} kcal per day to achieve your weight goal`;
   tdee.resultElem.style.color = "rgb(21, 122, 56)";
   tdee.resultValue = result;
 

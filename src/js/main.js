@@ -1,4 +1,5 @@
 import {maxLift} from "./pages/maxLifts.js"
+import {tdee} from "./pages/tdee.js"
 
 require('../scss/main.scss');
 require('../assets/favicon/site.webmanifest');
@@ -10,3 +11,4 @@ require('../assets/favicon/android-chrome-192x192.png');
 require('../assets/favicon/android-chrome-512x512.png');
 
 maxLift.run();
+tdee.run();

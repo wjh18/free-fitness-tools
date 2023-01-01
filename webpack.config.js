@@ -1,8 +1,8 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseUrl = 'https://www.freefitnesstools.com';
 const paths = [
@@ -38,7 +38,11 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.js$/,
@@ -92,6 +96,9 @@ module.exports = {
         priority: 0.4,
         skipgzip: true
       }
+    }),
+    new MiniCssExtractPlugin({
+      'filename': '[name].css',
     }),
   ],
 }

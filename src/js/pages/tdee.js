@@ -60,7 +60,56 @@ function tdeeSubmit(event) {
   tdee.resultElem.style.color = "rgb(21, 122, 56)";
   tdee.resultValue = result;
 
+  iterateOverMultipliers(bmr);
   event.preventDefault(); // No query parameters on submit
+}
+
+function iterateOverMultipliers(bmr) {
+  const multipliersDiv = document.getElementById("multipliersDiv");
+  const tbody = multipliersDiv.getElementsByTagName("tbody")[0];
+
+  let i = 0;
+  for (const trow of tbody.children) {
+    const bmrData = trow.getElementsByTagName("td")[0];
+    const maintenanceData = trow.getElementsByTagName("td")[2];
+
+    const calorieModifiersData = {
+      loseQuickly: trow.getElementsByTagName("td")[3],
+      loseSlowly: trow.getElementsByTagName("td")[4],
+      gainSlowly: trow.getElementsByTagName("td")[5],
+      gainQuickly: trow.getElementsByTagName("td")[6],
+    };
+
+    const maintenance = calculateMaintenance(bmr, Object.keys(tdee.activityMultipliers)[i]);
+
+    if (!bmr) {
+      bmrData.textContent = null;
+      maintenanceData.textContent = null;
+    } else {
+      bmrData.textContent = bmr;      
+      maintenanceData.textContent = maintenance;
+    }
+
+    for (const [key, value] of Object.entries(calorieModifiersData)) {
+      if (!bmr) {
+        value.textContent = null;
+        value.style.backgroundColor = "";
+        value.style.color = "";
+      } else {
+        const calorieTarget = maintenance + tdee.calorieModifiers[key];
+        value.textContent = calorieTarget;
+        if (tdee.resultValue && calorieTarget === tdee.resultValue) {          
+          value.style.backgroundColor = "rgb(21, 122, 56)";
+          value.style.color = "white";
+        } else {
+          value.style.backgroundColor = "";
+          value.style.color = "";
+        }
+      }
+    }
+
+    i++;
+  }
 }
 
 function tdeeReset(event) {
@@ -69,6 +118,7 @@ function tdeeReset(event) {
     tdee.resultElem = null;
     tdee.resultValue = null;
   }
+  iterateOverMultipliers();
 }
 
 function calculateCalories(bmr, maintenance, weightGoal) {

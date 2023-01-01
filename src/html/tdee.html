@@ -102,6 +102,80 @@
           </form>
           <div id="tdeeResult">
           </div>
+          <div id="multipliersDiv">
+            <table>
+              <caption>
+                TDEE and Calorie Targets Based on BMR
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">BMR</th>
+                  <th scope="col">Multiplier</th>
+                  <th scope="col">Maintenance<sup>*</sup></th>
+                  <th scope="col">Lose Quickly</th>
+                  <th scope="col">Lose Slowly</th>
+                  <th scope="col">Gain Slowly</th>
+                  <th scope="col">Gain Quickly</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td title="Sedentary">1.2</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td title="Lightly Active">1.375</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td title="Moderately Active">1.55</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td title="Very Active">1.725</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td title="Extra Active">1.9</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>                
+              </tbody>
+            </table>
+            <p>
+              <em>
+                <sup>*</sup>Note: Reps of 1RM is calculated by rearranging each formula to solve for reps with the original 1RM result and the weight at X% of 1RM as inputs.
+                Reps of 1RM may be inaccurate for certain formulae at a lower % of 1RM (most notably: Lombardi and Mayhew).
+                Please keep this in mind when selecting "Average All" as the formula option.
+                Mayhew's reps at 95% of max may also be negative. These are what I discovered as flaws in the formulae due to exponentiality, not a calculation error.
+                The first three formulae - Epley, Brzycki and Lander - are better at predicting reps at a % of 1RM.
+              </em>
+            </p>
+          </div>
         </section>
       </div>
     </main>

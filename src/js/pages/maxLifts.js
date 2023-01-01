@@ -43,7 +43,7 @@ function maxLiftSubmit(event) {
   maxLift.resultElem.style.color = "rgb(21, 122, 56)";
   maxLift.resultValue = oneRepMax;
   
-  showPercentages(oneRepMax, formula);
+  iterateOverPercentages(oneRepMax, formula);
   event.preventDefault(); // No query parameters on submit
 }
 
@@ -56,11 +56,15 @@ function iterateOverPercentages(max, formula) {
     const repsData = trow.getElementsByTagName("td")[2];
     const weightData = trow.getElementsByTagName("td")[1];
     if (!max) {
-      repsData.textContent = 0;
-      weightData.textContent = 0;
+      repsData.textContent = null;
+      weightData.textContent = null;
+      weightData.style.backgroundColor = "";
+      weightData.style.color = "";
     } else if (i === 0) {
       repsData.textContent = 1;
       weightData.textContent = max;
+      weightData.style.backgroundColor = "rgb(21, 122, 56)";
+      weightData.style.color = "white";
     } else {
       const weight = roundToFirstDecimalPlace(max * percentages[i]);
       weightData.textContent = weight;
@@ -91,10 +95,6 @@ function maxLiftReset(event) {
     maxLift.resultValue = null;
   }
   iterateOverPercentages();
-}
-
-function showPercentages(max, formula) {
-  iterateOverPercentages(max, formula);
 }
 
 function calculateMaxLift(formula, weight, reps) {

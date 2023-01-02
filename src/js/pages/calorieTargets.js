@@ -1,7 +1,7 @@
-export const tdee = {
-  form: document.getElementById("tdeeForm"),
-  formReset: document.getElementById("tdeeFormReset"),
-  result: document.getElementById("tdeeResult"),
+export const calorieTarget = {
+  form: document.getElementById("calorieTargetForm"),
+  formReset: document.getElementById("calorieTargetFormReset"),
+  result: document.getElementById("calorieTargetResult"),
   resultElem: null,
   resultValue: null,
   activityMultipliers: {
@@ -20,22 +20,22 @@ export const tdee = {
   },
   run: function() {
     if (this.form) {
-      this.form.addEventListener('submit', tdeeSubmit);
-      this.formReset.addEventListener('click', tdeeReset);
+      this.form.addEventListener('submit', calorieTargetSubmit);
+      this.formReset.addEventListener('click', calorieTargetReset);
     }
   }
 };
 
-function tdeeSubmit(event) {
+function calorieTargetSubmit(event) {
 
-  const weightInput = document.getElementById("tdeeWeight");
-  const weightUnitSelect = document.getElementById("tdeeWeightUnit");
-  const heightInput = document.getElementById("tdeeHeight");
-  const heightUnitSelect = document.getElementById("tdeeHeightUnit");
-  const ageInput = document.getElementById("tdeeAge");
-  const activityLevelSelect = document.getElementById("tdeeActivityLevel");
-  const genderSelect = document.getElementById("tdeeGender");
-  const weightGoalSelect = document.getElementById("tdeeWeightGoal");
+  const weightInput = document.getElementById("calorieTargetWeight");
+  const weightUnitSelect = document.getElementById("calorieTargetWeightUnit");
+  const heightInput = document.getElementById("calorieTargetHeight");
+  const heightUnitSelect = document.getElementById("calorieTargetHeightUnit");
+  const ageInput = document.getElementById("calorieTargetAge");
+  const activityLevelSelect = document.getElementById("calorieTargetActivityLevel");
+  const genderSelect = document.getElementById("calorieTargetGender");
+  const weightGoalSelect = document.getElementById("calorieTargetWeightGoal");
 
   const weight = weightInput.value;
   const weightUnit = weightUnitSelect.options[weightUnitSelect.selectedIndex].text;
@@ -46,19 +46,19 @@ function tdeeSubmit(event) {
   const gender = genderSelect.options[genderSelect.selectedIndex].value;
   const weightGoal = weightGoalSelect.options[weightGoalSelect.selectedIndex].value;
 
-  if (tdee.resultElem === null) {
+  if (calorieTarget.resultElem === null) {
     const resultElem = document.createElement("p");
-    resultElem.setAttribute("id", "tdeeResultElem");
-    tdee.result.appendChild(resultElem);
-    tdee.resultElem = document.getElementById("tdeeResultElem"); // Store in object
+    resultElem.setAttribute("id", "calorieTargetResultElem");
+    calorieTarget.result.appendChild(resultElem);
+    calorieTarget.resultElem = document.getElementById("calorieTargetResultElem"); // Store in object
   }
 
   const bmr = calculateBmr(weight, weightUnit, height, heightUnit, age, gender);
   const maintenance = calculateMaintenance(bmr, activityLevel);
   const result = calculateCalories(bmr, maintenance, weightGoal);
-  tdee.resultElem.textContent = `Consume ${result} kcal per day to achieve your weight goal`;
-  tdee.resultElem.style.color = "rgb(21, 122, 56)";
-  tdee.resultValue = result;
+  calorieTarget.resultElem.textContent = `Consume ${result} kcal per day to achieve your weight goal`;
+  calorieTarget.resultElem.style.color = "rgb(21, 122, 56)";
+  calorieTarget.resultValue = result;
 
   iterateOverMultipliers(bmr);
   event.preventDefault(); // No query parameters on submit
@@ -80,7 +80,7 @@ function iterateOverMultipliers(bmr) {
       gainQuickly: trow.getElementsByTagName("td")[6],
     };
 
-    const maintenance = calculateMaintenance(bmr, Object.keys(tdee.activityMultipliers)[i]);
+    const maintenance = calculateMaintenance(bmr, Object.keys(calorieTarget.activityMultipliers)[i]);
 
     if (!bmr) {
       bmrData.textContent = null;
@@ -96,9 +96,9 @@ function iterateOverMultipliers(bmr) {
         value.style.backgroundColor = "";
         value.style.color = "";
       } else {
-        const calorieTarget = maintenance + tdee.calorieModifiers[key];
-        value.textContent = calorieTarget;
-        if (tdee.resultValue && calorieTarget === tdee.resultValue) {          
+        const calTarget = maintenance + calorieTarget.calorieModifiers[key];
+        value.textContent = calTarget;
+        if (calorieTarget.resultValue && calTarget === calorieTarget.resultValue) {          
           value.style.backgroundColor = "rgb(21, 122, 56)";
           value.style.color = "white";
         } else {
@@ -112,23 +112,23 @@ function iterateOverMultipliers(bmr) {
   }
 }
 
-function tdeeReset(event) {
-  if (tdee.resultElem !== null) {
-    tdee.resultElem.remove();
-    tdee.resultElem = null;
-    tdee.resultValue = null;
+function calorieTargetReset(event) {
+  if (calorieTarget.resultElem !== null) {
+    calorieTarget.resultElem.remove();
+    calorieTarget.resultElem = null;
+    calorieTarget.resultValue = null;
   }
   iterateOverMultipliers();
 }
 
 function calculateCalories(bmr, maintenance, weightGoal) {
-  const calorieMod = tdee.calorieModifiers[weightGoal];
+  const calorieMod = calorieTarget.calorieModifiers[weightGoal];
   const calories = maintenance + calorieMod;
   return Math.round(calories);
 }
 
 function calculateMaintenance(bmr, activityLevel) {
-  const multiplier = tdee.activityMultipliers[activityLevel];
+  const multiplier = calorieTarget.activityMultipliers[activityLevel];
   return Math.round(bmr * multiplier);
 }
 

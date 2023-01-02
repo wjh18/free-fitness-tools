@@ -8,7 +8,7 @@ const baseUrl = 'https://www.freefitnesstools.com';
 const paths = [
   '',
   '/max-lifts/',
-  '/tdee/'
+  '/calorie-targets/'
 ];
 
 module.exports = {
@@ -80,9 +80,9 @@ module.exports = {
       template: 'src/html/max-lifts.html',
     }),
     new HtmlWebpackPlugin({
-      title: 'TDEE Calculator',
-      filename: 'tdee/index.html',
-      template: 'src/html/tdee.html',
+      title: 'Calorie Target Calculator',
+      filename: 'calorie-targets/index.html',
+      template: 'src/html/calorie-targets.html',
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',

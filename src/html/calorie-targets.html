@@ -10,7 +10,7 @@
     <meta name="robots" content="index, follow">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <meta name="author" content="Will J. Holmes">
-    <meta name="description" content="A free tool to calculate your total daily energy expenditure (TDEE).">
+    <meta name="description" content="A free tool to calculate your BMR, TDEE and calorie targets for weight gain, loss or maintenance.">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -39,36 +39,36 @@
     <main>
       <div class="container">
         <section class="page-heading">
-          <h1>TDEE Calculator</h1>
-          <p>Calculate your total daily energy expenditure.</p>
+          <h1>BMR, TDEE and Calorie Target Calculator</h1>
+          <p>Calculate your basal metabolic rate (BMR) and total daily energy expenditure (TDEE). Estimate calorie targets that align with your weight loss, gain or maintenance goals.</p>
         </section>
-        <section class="tdee">
-          <form id="tdeeForm">
+        <section class="calorie-targets">
+          <form id="calorieTargetForm">
             <fieldset>
-              <legend>TDEE Calculator</legend>
+              <legend>Calorie Target Calculator</legend>
               <div class="form-group">
-                <label for="tdeeWeight">Weight</label>
-                <input type="number" min="50" max="1000" id="tdeeWeight" name="weight" value="225">
-                <select id="tdeeWeightUnit">
+                <label for="calorieTargetWeight">Weight</label>
+                <input type="number" min="50" max="1000" id="calorieTargetWeight" name="weight" value="225">
+                <select id="calorieTargetWeightUnit">
                   <option selected value="Imperial">lbs</option>
                   <option value="Metric">kg</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="tdeeHeight">Height</label>
-                <input type="number" min="30" max="100" id="tdeeHeight" name="height" value="66">
-                <select id="tdeeHeightUnit">
+                <label for="calorieTargetHeight">Height</label>
+                <input type="number" min="30" max="100" id="calorieTargetHeight" name="height" value="66">
+                <select id="calorieTargetHeightUnit">
                   <option selected value="Imperial">in</option>
                   <option value="Metric">cm</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="tdeeAge">Age</label>
-                <input type="number" min="1" max="100" id="tdeeAge" name="age" value="30">                
+                <label for="calorieTargetAge">Age</label>
+                <input type="number" min="1" max="100" id="calorieTargetAge" name="age" value="30">                
               </div>
               <div class="form-group">
-                <label for="tdeeActivityLevel">Activity Level</label>
-                <select id="tdeeActivityLevel">
+                <label for="calorieTargetActivityLevel">Activity Level</label>
+                <select id="calorieTargetActivityLevel">
                   <option selected value="sedentary" title="Little to no exercise at all">Sedentary</option>
                   <option value="light" title="Light exercise 1-3 days per week">Lightly Active</option>
                   <option value="moderate" title="Moderate exercise 6-7 days per week">Moderately Active</option>
@@ -77,16 +77,16 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="tdeeGender">Gender</label>
-                <select id="tdeeGender">
+                <label for="calorieTargetGender">Gender</label>
+                <select id="calorieTargetGender">
                   <option selected value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="neutral">Neutral</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="tdeeWeightGoal">Weight Goal</label>
-                <select id="tdeeWeightGoal">
+                <label for="calorieTargetWeightGoal">Weight Goal</label>
+                <select id="calorieTargetWeightGoal">
                   <option selected value="loseQuickly">Lose Quickly (-500 kcal)</option>
                   <option value="loseSlowly">Lose Slowly (-250 kcal)</option>
                   <option value="maintain">Maintain (+/- 0 kcal)</option>
@@ -96,11 +96,11 @@
               </div>
               <div class="btn-group">
                 <button type="submit" class="btn-primary">Calculate</button>
-                <button type="reset" id="tdeeFormReset" class="btn-secondary">Reset</button>
+                <button type="reset" id="calorieTargetFormReset" class="btn-secondary">Reset</button>
               </div>
             </fieldset>
           </form>
-          <div id="tdeeResult">
+          <div id="calorieTargetResult">
           </div>
           <div id="multipliersDiv" class="table-responsive">
             <table>

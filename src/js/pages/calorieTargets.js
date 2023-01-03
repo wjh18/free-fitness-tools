@@ -55,7 +55,7 @@ function calorieTargetSubmit(event) {
 
   const bmr = calculateBmr(weight, weightUnit, height, heightUnit, age, gender);
   const maintenance = calculateMaintenance(bmr, activityLevel);
-  const result = calculateCalories(bmr, maintenance, weightGoal);
+  const result = calculateCalories(maintenance, weightGoal);
   calorieTarget.resultElem.textContent = `Consume ${result} kcal per day to achieve your weight goal`;
   calorieTarget.resultElem.style.color = "rgb(21, 122, 56)";
   calorieTarget.resultValue = result;
@@ -85,29 +85,27 @@ function iterateOverMultipliers(bmr) {
     if (!bmr) {
       bmrData.textContent = null;
       maintenanceData.textContent = null;
+
+      for (const value of Object.values(calorieModifiersData)) {
+        value.textContent = null;
+        resetColorAndBackground(value);
+      }
+        
     } else {
       bmrData.textContent = bmr;      
       maintenanceData.textContent = maintenance;
-    }
 
-    for (const [key, value] of Object.entries(calorieModifiersData)) {
-      if (!bmr) {
-        value.textContent = null;
-        value.style.backgroundColor = "";
-        value.style.color = "";
-      } else {
+      for (const [key, value] of Object.entries(calorieModifiersData)) {
         const calTarget = maintenance + calorieTarget.calorieModifiers[key];
         value.textContent = calTarget;
         if (calorieTarget.resultValue && calTarget === calorieTarget.resultValue) {          
           value.style.backgroundColor = "rgb(21, 122, 56)";
           value.style.color = "white";
         } else {
-          value.style.backgroundColor = "";
-          value.style.color = "";
+          resetColorAndBackground(value);
         }
       }
     }
-
     i++;
   }
 }
@@ -121,7 +119,7 @@ function calorieTargetReset(event) {
   iterateOverMultipliers();
 }
 
-function calculateCalories(bmr, maintenance, weightGoal) {
+function calculateCalories(maintenance, weightGoal) {
   const calorieMod = calorieTarget.calorieModifiers[weightGoal];
   const calories = maintenance + calorieMod;
   return Math.round(calories);
@@ -157,4 +155,9 @@ function convertPoundsToKilograms(lbs) {
 
 function convertInchesToCentimeters(inches) {
   return inches / 0.39370;
+}
+
+function resetColorAndBackground(elem) {
+  elem.style.backgroundColor = "";
+  elem.style.color = "";
 }

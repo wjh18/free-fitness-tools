@@ -23,13 +23,12 @@ export const maxLift = {
 
 function maxLiftSubmit(event) {  
   const formulaSelect = document.getElementById("maxLiftFormula");
-  const formula = formulaSelect.options[formulaSelect.selectedIndex].value;
-
   const weightInput = document.getElementById("maxLiftWeight");
   const repsInput = document.getElementById("maxLiftReps");
-  const oneRepMax = calculateMaxLift(formula, weightInput.value, repsInput.value);
-
   const unitSelect = document.getElementById("maxLiftUnit");
+  
+  const formula = formulaSelect.options[formulaSelect.selectedIndex].value;
+  const oneRepMax = calculateMaxLift(formula, weightInput.value, repsInput.value);
   const unit = unitSelect.options[unitSelect.selectedIndex].text;
 
   if (maxLift.resultElem === null) {

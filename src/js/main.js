@@ -1,5 +1,5 @@
-import {maxLift} from "./pages/maxLifts.js"
-import {calorieTarget} from "./pages/calorieTargets.js"
+import {maxLift} from "./maxLifts.js"
+import {calorieTarget} from "./calorieTargets.js"
 
 require('../scss/main.scss');
 require('../assets/favicon/site.webmanifest');

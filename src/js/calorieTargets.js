@@ -1,3 +1,8 @@
+import {
+  resetResultElem, resetColorAndBg, highlightColorAndBg,
+  createAndSetResultElem, getSelectOption
+} from "./helpers.js"
+
 export const calorieTarget = {
   form: document.getElementById("calorieTargetForm"),
   formReset: document.getElementById("calorieTargetFormReset"),
@@ -38,20 +43,15 @@ function calorieTargetSubmit(event) {
   const weightGoalSelect = document.getElementById("calorieTargetWeightGoal");
 
   const weight = weightInput.value;
-  const weightUnit = weightUnitSelect.options[weightUnitSelect.selectedIndex].text;
+  const weightUnit = getSelectOption(weightUnitSelect);
   const height = heightInput.value;
-  const heightUnit = heightUnitSelect.options[heightUnitSelect.selectedIndex].text;
+  const heightUnit = getSelectOption(heightUnitSelect);
   const age = ageInput.value;
-  const activityLevel = activityLevelSelect.options[activityLevelSelect.selectedIndex].value;
-  const gender = genderSelect.options[genderSelect.selectedIndex].value;
-  const weightGoal = weightGoalSelect.options[weightGoalSelect.selectedIndex].value;
+  const activityLevel = getSelectOption(activityLevelSelect, true);
+  const gender = getSelectOption(genderSelect, true);
+  const weightGoal = getSelectOption(weightGoalSelect, true);
 
-  if (calorieTarget.resultElem === null) {
-    const resultElem = document.createElement("p");
-    resultElem.setAttribute("id", "calorieTargetResultElem");
-    calorieTarget.result.appendChild(resultElem);
-    calorieTarget.resultElem = document.getElementById("calorieTargetResultElem"); // Store in object
-  }
+  createAndSetResultElem(calorieTarget, "calorieTargetResultElem")
 
   const bmr = calculateBmr(weight, weightUnit, height, heightUnit, age, gender);
   const maintenance = calculateMaintenance(bmr, activityLevel);
@@ -88,7 +88,7 @@ function iterateOverMultipliers(bmr) {
 
       for (const value of Object.values(calorieModifiersData)) {
         value.textContent = null;
-        resetColorAndBackground(value);
+        resetColorAndBg(value);
       }
         
     } else {
@@ -99,10 +99,9 @@ function iterateOverMultipliers(bmr) {
         const calTarget = maintenance + calorieTarget.calorieModifiers[key];
         value.textContent = calTarget;
         if (calorieTarget.resultValue && calTarget === calorieTarget.resultValue) {          
-          value.style.backgroundColor = "rgb(21, 122, 56)";
-          value.style.color = "white";
+          highlightColorAndBg(value);
         } else {
-          resetColorAndBackground(value);
+          resetColorAndBg(value);
         }
       }
     }
@@ -111,11 +110,7 @@ function iterateOverMultipliers(bmr) {
 }
 
 function calorieTargetReset(event) {
-  if (calorieTarget.resultElem !== null) {
-    calorieTarget.resultElem.remove();
-    calorieTarget.resultElem = null;
-    calorieTarget.resultValue = null;
-  }
+  resetResultElem(calorieTarget);
   iterateOverMultipliers();
 }
 
@@ -155,9 +150,4 @@ function convertPoundsToKilograms(lbs) {
 
 function convertInchesToCentimeters(inches) {
   return inches / 0.39370;
-}
-
-function resetColorAndBackground(elem) {
-  elem.style.backgroundColor = "";
-  elem.style.color = "";
 }

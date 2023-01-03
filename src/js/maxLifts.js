@@ -1,3 +1,8 @@
+import {
+  resetResultElem, resetColorAndBg, highlightColorAndBg,
+  createAndSetResultElem, getSelectOption
+} from "./helpers.js"
+
 export const maxLift = {
   form: document.getElementById("maxLiftForm"),
   formReset: document.getElementById("maxLiftFormReset"),
@@ -27,16 +32,11 @@ function maxLiftSubmit(event) {
   const repsInput = document.getElementById("maxLiftReps");
   const unitSelect = document.getElementById("maxLiftUnit");
   
-  const formula = formulaSelect.options[formulaSelect.selectedIndex].value;
+  const formula = getSelectOption(formulaSelect, true);
   const oneRepMax = calculateMaxLift(formula, weightInput.value, repsInput.value);
-  const unit = unitSelect.options[unitSelect.selectedIndex].text;
+  const unit = getSelectOption(unitSelect);
 
-  if (maxLift.resultElem === null) {
-    const resultElem = document.createElement("p");
-    resultElem.setAttribute("id", "maxLiftResultElem");
-    maxLift.result.appendChild(resultElem);
-    maxLift.resultElem = document.getElementById("maxLiftResultElem"); // Store in object
-  }
+  createAndSetResultElem(maxLift, "maxLiftResultElem")
 
   maxLift.resultElem.textContent = `1RM: ${oneRepMax} ${unit}`;
   maxLift.resultElem.style.color = "rgb(21, 122, 56)";
@@ -57,13 +57,11 @@ function iterateOverPercentages(max, formula) {
     if (!max) {
       repsData.textContent = null;
       weightData.textContent = null;
-      weightData.style.backgroundColor = "";
-      weightData.style.color = "";
+      resetColorAndBg(weightData);
     } else if (i === 0) {
       repsData.textContent = 1;
       weightData.textContent = max;
-      weightData.style.backgroundColor = "rgb(21, 122, 56)";
-      weightData.style.color = "white";
+      highlightColorAndBg(weightData);
     } else {
       const weight = roundToFirstDecimalPlace(max * percentages[i]);
       weightData.textContent = weight;
@@ -88,11 +86,7 @@ function calculatePercentageReps(formula, weight, max) {
 }
 
 function maxLiftReset(event) {
-  if (maxLift.resultElem !== null) {
-    maxLift.resultElem.remove();
-    maxLift.resultElem = null;
-    maxLift.resultValue = null;
-  }
+  resetResultElem(maxLift);
   iterateOverPercentages();
 }
 

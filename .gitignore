@@ -4,3 +4,6 @@ dist
 
 ## MacOS
 .DS_Store
+
+# Environment
+*.code-workspace
